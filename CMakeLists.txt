@@ -1,0 +1,26 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+INCLUDE(CPack)
+INCLUDE(FindPkgConfig)
+
+PROJECT(magtek_cr_switch)
+
+PKG_CHECK_MODULES(LIBUSB REQUIRED libusb-1.0)
+
+INCLUDE_DIRECTORIES(${LIBUSB_INCLUDE_DIRS})
+
+ADD_EXECUTABLE(magtek_cr_switch src/main.c)
+
+TARGET_LINK_LIBRARIES(magtek_cr_switch ${LIBUSB_LIBRARIES})
+
+INSTALL(PROGRAMS ${CMAKE_BINARY_DIR}/magtek_cr_switch DESTINATION bin)
+
+CONFIGURE_FILE(
+"${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+IMMEDIATE @ONLY
+)
+
+ADD_CUSTOM_TARGET(uninstall "${CMAKE_COMMAND}"
+-P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+)
