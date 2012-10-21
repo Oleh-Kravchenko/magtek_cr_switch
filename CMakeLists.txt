@@ -9,6 +9,8 @@ PKG_CHECK_MODULES(LIBUSB REQUIRED libusb-1.0)
 
 INCLUDE_DIRECTORIES(${LIBUSB_INCLUDE_DIRS} include)
 
+ADD_DEFINITIONS(-pedantic -std=gnu99)
+
 ADD_EXECUTABLE(magtek_cr_switch src/main.c)
 
 TARGET_LINK_LIBRARIES(magtek_cr_switch ${LIBUSB_LIBRARIES})

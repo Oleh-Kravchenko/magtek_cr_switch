@@ -11,12 +11,13 @@
 
 #include <stdio.h>
 #include <libusb.h>
+#include <unistd.h>
 
 #include "magtek_cr_switch.h"
 
 /*-------------------------------------------------------------------------*/
 
-static struct magtek_device_info devices[] =
+static struct magtek_device_info devices[2] =
 {
 	{
 		.name = "MagTek Card Reader HID mode",
@@ -52,7 +53,6 @@ static struct magtek_device_info devices[] =
 			.data = {0x02},
 		},
 	},
-	{},
 };
 
 /*-------------------------------------------------------------------------*/
